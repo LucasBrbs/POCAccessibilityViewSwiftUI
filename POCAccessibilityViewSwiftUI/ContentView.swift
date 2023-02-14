@@ -9,10 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
 
-    @State  var nativeAlert = false
     @State var customAlert = false
     @State var HUD = false
     @State var password = ""
+
     var body: some View {
         ZStack{
             VStack(spacing: 25){
@@ -29,12 +29,18 @@ struct ContentView: View {
                 }){
                     Text("HUD Progress View")
                 }
+                Button(action: {
+                    customAlert.toggle()
+                }){
+                    Text("HUD Progress View")
+                }
             }
 
             if HUD {
                 HUDProgressView(placeHolder: "Please Wait", show: $HUD)
 
             }
+
             if customAlert {
 
                 CustomAlertView(show: $customAlert)
@@ -147,6 +153,7 @@ struct CustomAlertView : View {
                     .foregroundColor(.pink)
 
                 Text("You've succesfully done the work")
+
                 Button(action: {}){
                     Text("Back to Home")
                         .foregroundColor(.white)
